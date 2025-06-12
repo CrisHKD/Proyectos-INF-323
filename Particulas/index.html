@@ -1,0 +1,78 @@
+<!DOCTYPE HTML>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Transformación 2D en WebGL 2.0</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <aside>
+    <h2>Opciones de Simulación</h2>
+    <label>
+      <input type="checkbox" id="checkLluvia" />
+      Generar lluvia
+    </label>
+    <label>
+      <input type="checkbox" id="checkViento" />
+      Activar viento
+    </label>
+    <label>
+      <input type="checkbox" id="checkGravedad" />
+      Activar gravedad
+    </label>
+    <label for="inputGravedadX">
+      Gravedad X:
+      <input type="number" id="inputGravedadX" min="-1" max="1" step="0.01" value="0" />
+    </label>
+
+    <label for="inputGravedadY">
+      Gravedad Y:
+      <input type="number" id="inputGravedadY" min="-1" max="1" step="0.01" value="0.1" />
+    </label>
+    <label for="inputFactor">
+        Tiempo:
+      <input type="number" id="inputFactor" min="0" max="10" step="0.1" value="2" />
+    </label>
+    <label for="inputCantidad">
+      Partículas por clic:
+      <input type="number" id="inputCantidad" min="1" max="50" value="5" />
+    </label>
+  </aside>
+
+  <main>
+    <canvas id="webglcanvas" width="660" height="660"></canvas>
+  </main>
+
+  <!-- Shaders embebidos -->
+  <script id="vs" type="x-shader/x-vertex">
+    #version 300 es
+    precision highp float;
+
+    layout(location = 0) in vec2 aVertices;
+
+    uniform mat4 uMatrizProyeccion;
+    uniform mat4 uMatrizVista;
+    uniform mat4 uMatrizModelo;
+
+    void main() {
+      vec4 posicion = vec4(aVertices, 0.0, 1.0);
+      gl_Position = uMatrizProyeccion * uMatrizVista * uMatrizModelo * posicion;
+    }
+  </script>
+
+  <script id="fs" type="fragment">
+    #version 300 es
+    precision highp float;
+
+    uniform vec4 uColor;  // color uniforme para las partículas
+    out vec4 color;
+
+    void main() {
+      color = uColor;
+    }
+  </script>
+
+  <!-- Script principal -->
+  <script type="module" src="js/main.js"></script>
+</body>
+</html>

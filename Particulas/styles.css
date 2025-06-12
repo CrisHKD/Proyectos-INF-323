@@ -1,0 +1,57 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background: #f5f5f5;
+  display: flex;
+  height: 100vh;
+}
+
+aside {
+  width: 250px;
+  background: #1f2937;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 20px;
+}
+
+aside h2 {
+  font-size: 18px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: #93c5fd;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+label input[type="checkbox"] {
+  transform: scale(1.2);
+  cursor: pointer;
+}
+
+main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+canvas {
+  border: 2px solid #1f2937;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  background: white;
+}
